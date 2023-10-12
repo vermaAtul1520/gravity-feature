@@ -1,0 +1,227 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex; justify-content: center;flex-direction: column; align-items: center;height:100vh;">
+        <div id="div-container" >
+            <div id="topButtons">
+                <Button>To click1</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click2</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click3</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click4</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click5</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click1</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click2</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click3</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click4</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click5</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click1</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click2</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click3</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click4</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click5</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click1</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click2</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click3</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click4</Button>
+            </div>
+            <div id="topButtons">
+                <Button>To click5</Button>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: 20px;">
+            <button id="left-button">Left</button>
+            <div class="image-container">
+                <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg" alt="Image 1">
+                <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
+                <img class="image" src="portrait-orientation.jpg" alt="Image 3">
+            </div>
+        
+            <button id="right-button">Right</button>
+        </div>
+    </div>
+
+
+    <script>
+        const container = document.getElementById('div-container');
+        const images = document.querySelectorAll('.image');
+        let currentIndex = 0;
+        images[currentIndex].style.opacity = 1;
+
+        document.getElementById('left-button').addEventListener('click', () => {
+            // images[currentIndex].style.animation = 'none';
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            // images[currentIndex].style.animation = 'fade 0.5s forwards';
+            // images[currentIndex].style.opacity = 1;
+            container.scrollLeft -= 150;
+
+
+            images[currentIndex].style.transform = 'translateX(100%)';
+            images[currentIndex].style.opacity = 0;
+
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+            images[currentIndex].style.transform = 'translateX(-100%)';
+            images[currentIndex].style.opacity = 1;
+
+            images[currentIndex].addEventListener('transitionend', () => {
+                images[currentIndex].style.transform = 'none';
+            });
+        });
+
+        document.getElementById('right-button').addEventListener('click', () => {
+            // images[currentIndex].style.animation = 'none';
+            // images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex + 1) % images.length;
+            // images[currentIndex].style.animation = 'fade 0.5s forwards';
+            // images[currentIndex].style.opacity = 1;
+            container.scrollLeft += 150;
+
+
+            images[currentIndex].style.transform = 'translateX(-100%)';
+            images[currentIndex].style.opacity = 0;
+
+            // Move buttons one place to the right
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Move the new image to the right and fade it in
+            images[currentIndex].style.transform = 'translateX(100%)';
+            images[currentIndex].style.opacity = 1;
+
+            // Reset the transform of the previous image
+            images[currentIndex].addEventListener('transitionend', () => {
+                images[currentIndex].style.transform = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Image Slideshow with Opposite Direction Move</title>
+    <style>
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            width: 300px;
+            height: 200px;
+        }
+
+        .image {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s; /* Add transitions for opacity and transform */
+        }
+
+        #left-button, #right-button {
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg" alt="Image 1">
+        <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
+        <img class="image" src="portrait-orientation.jpg" alt="Image 3">
+    </div>
+
+    <button id="left-button">Left</button>
+    <button id="right-button">Right</button>
+
+    <script>
+        const images = document.querySelectorAll('.image');
+        let currentIndex = 0;
+
+        // Initially display the first image with a transition
+        images[currentIndex].style.opacity = 1;
+
+        document.getElementById('left-button').addEventListener('click', () => {
+            // Move the current image to the right and fade it out
+            images[currentIndex].style.transform = 'translateX(100%)';
+            images[currentIndex].style.opacity = 0;
+
+            // Move buttons one place to the left
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+            // Move the new image to the left and fade it in
+            images[currentIndex].style.transform = 'translateX(-100%)';
+            images[currentIndex].style.opacity = 1;
+
+            // Reset the transform of the previous image
+            images[currentIndex].addEventListener('transitionend', () => {
+                images[currentIndex].style.transform = 'none';
+            });
+        });
+
+        document.getElementById('right-button').addEventListener('click', () => {
+            // Move the current image to the left and fade it out
+            images[currentIndex].style.transform = 'translateX(-100%)';
+            images[currentIndex].style.opacity = 0;
+
+            // Move buttons one place to the right
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Move the new image to the right and fade it in
+            images[currentIndex].style.transform = 'translateX(100%)';
+            images[currentIndex].style.opacity = 1;
+
+            // Reset the transform of the previous image
+            images[currentIndex].addEventListener('transitionend', () => {
+                images[currentIndex].style.transform = 'none';
+            });
+        });
+    </script>
+</body>
+</html> -->

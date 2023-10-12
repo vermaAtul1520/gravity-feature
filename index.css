@@ -1,0 +1,72 @@
+#topButtons{
+    background-color: red;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+}
+#div-container {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100vh
+}
+
+
+
+.div-box {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    margin: 10px;
+}
+
+.image {
+    position: absolute;
+    opacity: 0;
+    /* transition: opacity 1s ease-in-out; */
+    transition: opacity 0.5s, transform 0.5s;
+    /* transform: translate(100px, 100px); */
+    animation: fade 0.5s forwards;
+}
+
+#left-button, #right-button {
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 200px;
+    contain:unset;
+}
+
+
+.curve-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: #3498db;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.topButtons {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 50%; /* Position child elements along the top edge of the curve */
+    transform: translateY(-50%);
+}
