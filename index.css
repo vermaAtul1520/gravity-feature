@@ -1,4 +1,4 @@
-#topButtons{
+.topButtons{
     background-color: red;
     width: 150px;
     height: 50px;
@@ -6,14 +6,19 @@
     align-items: center;
     justify-content: center;
     margin: 2px;
+    position: absolute;
 }
+
 #div-container {
     float: left;
     display: flex;
     flex-direction: row;
     overflow: hidden;
     white-space: nowrap;
-    width: 100vh
+    width: 150vh;
+    background-color: #333;
+    height: 50vh;
+    position: relative;
 }
 
 
@@ -29,9 +34,7 @@
 .image {
     position: absolute;
     opacity: 0;
-    /* transition: opacity 1s ease-in-out; */
     transition: opacity 0.5s, transform 0.5s;
-    /* transform: translate(100px, 100px); */
     animation: fade 0.5s forwards;
 }
 
@@ -60,13 +63,4 @@
     background-color: #3498db;
     border-radius: 50%;
     overflow: hidden;
-}
-
-.topButtons {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    top: 50%; /* Position child elements along the top edge of the curve */
-    transform: translateY(-50%);
 }

@@ -7,65 +7,65 @@
 </head>
 <body>
     <div style="display: flex; justify-content: center;flex-direction: column; align-items: center;height:100vh;">
-        <div id="div-container" >
-            <div id="topButtons">
+        <div id="div-container" class="" >
+            <div class="topButtons" id="button1">
                 <Button>To click1</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button2">
                 <Button>To click2</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button3">
                 <Button>To click3</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button4">
                 <Button>To click4</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button5">
                 <Button>To click5</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button6">
                 <Button>To click1</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button7">
                 <Button>To click2</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button8">
                 <Button>To click3</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button9">
                 <Button>To click4</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button10">
                 <Button>To click5</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button11">
                 <Button>To click1</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button12">
                 <Button>To click2</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button13">
                 <Button>To click3</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button14">
                 <Button>To click4</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button15">
                 <Button>To click5</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button16">
                 <Button>To click1</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button17">
                 <Button>To click2</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button18">
                 <Button>To click3</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button19">
                 <Button>To click4</Button>
             </div>
-            <div id="topButtons">
+            <div class="topButtons" id="button20">
                 <Button>To click5</Button>
             </div>
         </div>
@@ -87,6 +87,32 @@
         const images = document.querySelectorAll('.image');
         let currentIndex = 0;
         images[currentIndex].style.opacity = 1;
+
+        const buttons=document.querySelectorAll('.topButtons');
+        let currentButt
+        let topPosition=150;
+        let leftPosition=0;
+
+        let flag=false;
+        buttons?.forEach((item)=>{
+            console.log("buttons",item.getAttribute('id'))
+            const id=item.getAttribute('id');
+            const buttonElement=document.getElementById(id);
+            // console.log("buttonElement",buttonElement)
+            buttonElement.style.top=`${topPosition}px`;
+            buttonElement.style.left=`${leftPosition}px`;
+
+            if(!flag && topPosition<=20){
+                flag=true;
+            }
+            if(flag){
+                topPosition+=20;
+            }
+            else{
+                topPosition-=20;
+            }
+            leftPosition+=90;
+        })
 
         document.getElementById('left-button').addEventListener('click', () => {
             // images[currentIndex].style.animation = 'none';
