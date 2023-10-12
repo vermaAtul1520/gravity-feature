@@ -1,24 +1,27 @@
 .topButtons{
+    border-radius: 10px;
     background-color: red;
-    width: 150px;
+    width: 100px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 2px;
     position: absolute;
+    transition: opacity 0.5s, transform 1s;
 }
 
 #div-container {
-    float: left;
+    /* float: left; */
     display: flex;
     flex-direction: row;
     overflow: hidden;
     white-space: nowrap;
-    width: 150vh;
+    width: 155vh;
     background-color: #333;
     height: 50vh;
     position: relative;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 

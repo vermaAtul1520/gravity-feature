@@ -81,87 +81,174 @@
         </div>
     </div>
 
+<script>
+    const container = document.getElementById('div-container');
+    const images = document.querySelectorAll('.image');
+    let currentIndex = 0;
+    images[currentIndex].style.opacity = 1;
 
-    <script>
-        const container = document.getElementById('div-container');
-        const images = document.querySelectorAll('.image');
-        let currentIndex = 0;
+    let buttons = document.querySelectorAll('.topButtons');
+  
+    let topPosition = 150;
+    let leftPosition = 0;
+
+    let flag = false;
+    buttons?.forEach((item) => {
+        const id = item.getAttribute('id');
+        const buttonElement = document.getElementById(id);
+        // console.log("buttonElement",buttonElement)
+        buttonElement.style.top = `${topPosition}px`;
+        buttonElement.style.left = `${leftPosition}px`;
+
+        // buttonElement.style.transform=  translate(`${topPosition}px`, `${leftPosition}px`);
+
+        //  "translate(" + (topPosition - 7) + "px," + (leftPosition - 7) + "px)";
+        // `translateX(${topPosition}px) translateY(${leftPosition}px)`;
+
+        if (!flag && topPosition <= 20) {
+            flag = true;
+        }
+        if (flag) {
+            topPosition += 40;
+        }
+        else {
+            topPosition -= 40;
+        }
+        leftPosition += 120;
+    })
+
+    document.getElementById('left-button').addEventListener('click', () => {
+        // images[currentIndex].style.animation = 'none';
+        images[currentIndex].style.opacity = 0;
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        // images[currentIndex].style.animation = 'fade 0.5s forwards';
+        // images[currentIndex].style.opacity = 1;
+    // container.scrollLeft -= 150;
+
+
+        images[currentIndex].style.transform = 'translateX(100%)';
+        images[currentIndex].style.opacity = 0;
+
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+        images[currentIndex].style.transform = 'translateX(-100%)';
         images[currentIndex].style.opacity = 1;
 
-        const buttons=document.querySelectorAll('.topButtons');
-        let currentButt
-        let topPosition=150;
-        let leftPosition=0;
+        images[currentIndex].addEventListener('transitionend', () => {
+            images[currentIndex].style.transform = 'none';
+        });
 
-        let flag=false;
-        buttons?.forEach((item)=>{
-            console.log("buttons",item.getAttribute('id'))
-            const id=item.getAttribute('id');
-            const buttonElement=document.getElementById(id);
+
+        let topPosition = 150;
+        let leftPosition = 0;
+
+        let flag = false;
+        let buttons = document.querySelectorAll('.topButtons');
+    
+        let tmpArray = [...buttons];
+        if (rightClickCount>0) {
+            rightClickCount--
+            tmpArray?.slice(rightClickCount, tmpArray?.length)?.forEach((item) => {
+                const id = item.getAttribute('id');
+                const buttonElement = document.getElementById(id);
+                // console.log("buttonElement",buttonElement)
+
+                // buttonElement.style.top = `${topPosition}px`;
+                // buttonElement.style.left = `${leftPosition}px`;
+
+                // buttonElement.style.transform= "translate(" + (120) + "px," + (40) + "px)";
+
+                // translate(`${topPosition}px`, `${leftPosition}px`);
+                // `translateX(${topPosition}px) translateY(${leftPosition}px)`;
+
+                if (!flag && topPosition <= 20) {
+                    flag = true;
+                }
+                if (flag) {
+                    topPosition += 40;
+                    buttonElement.style.transform=`translateY(40px)`;
+                }
+                else {
+                    topPosition -= 40;
+                    buttonElement.style.transform=`translateY(-40px)`;
+                }
+                leftPosition += 120;
+                buttonElement.style.transform=`translateX(120px)`;
+            })
+        }
+
+    });
+
+    let rightClickCount=0;
+    document.getElementById('right-button').addEventListener('click', () => {
+        // images[currentIndex].style.animation = 'none';
+        // images[currentIndex].style.opacity = 0;
+        currentIndex = (currentIndex + 1) % images.length;
+        // images[currentIndex].style.animation = 'fade 0.5s forwards';
+        // images[currentIndex].style.opacity = 1;
+        
+        // container.scrollLeft += 150;
+
+
+        images[currentIndex].style.transform = 'translateX(-100%)';
+        images[currentIndex].style.opacity = 0;
+
+        // Move buttons one place to the right
+        currentIndex = (currentIndex + 1) % images.length;
+
+        // Move the new image to the right and fade it in
+        images[currentIndex].style.transform = 'translateX(100%)';
+        images[currentIndex].style.opacity = 1;
+
+        // Reset the transform of the previous image
+        images[currentIndex].addEventListener('transitionend', () => {
+            images[currentIndex].style.transform = 'none';
+        });
+
+        let topPosition = 150;
+        let leftPosition = 0;
+
+        let flag = false;
+        let buttons = document.querySelectorAll('.topButtons');
+    
+        let tmpArray=[...buttons];
+        if(tmpArray?.length-rightClickCount>9){
+            rightClickCount++
+            tmpArray?.slice(rightClickCount,tmpArray?.length)?.forEach((item) => {
+            const id = item.getAttribute('id');
+            const buttonElement = document.getElementById(id);
+
             // console.log("buttonElement",buttonElement)
-            buttonElement.style.top=`${topPosition}px`;
-            buttonElement.style.left=`${leftPosition}px`;
+            // buttonElement.style.top = `${topPosition}px`;
+            // buttonElement.style.left = `${leftPosition}px`;
 
-            if(!flag && topPosition<=20){
-                flag=true;
-            }
-            if(flag){
-                topPosition+=20;
-            }
-            else{
-                topPosition-=20;
-            }
-            leftPosition+=90;
-        })
+            // buttonElement.style.transform="translate(" + (120) + "px," + (40) + "px)"; 
 
-        document.getElementById('left-button').addEventListener('click', () => {
-            // images[currentIndex].style.animation = 'none';
-            images[currentIndex].style.opacity = 0;
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            // images[currentIndex].style.animation = 'fade 0.5s forwards';
-            // images[currentIndex].style.opacity = 1;
-            container.scrollLeft -= 150;
+            // translate(`${topPosition}px`, `${leftPosition}px`);
+            // `translateX(${topPosition}px) translateY(${leftPosition}px)`;
 
+                if (!flag && topPosition <= 20) {
+                    flag = true;
+                }
 
-            images[currentIndex].style.transform = 'translateX(100%)';
-            images[currentIndex].style.opacity = 0;
+                if (flag) {
+                    topPosition += 40;
+                    buttonElement.style.transform = `translateY(40px)`;
+                }
+                else {
+                    topPosition -= 40;
+                    buttonElement.style.transform = `translateY(-40px)`;
+                }
+                leftPosition += 120;
+                buttonElement.style.transform = `translateX(120px)`;
+            })
+        }
 
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
+    });
 
-            images[currentIndex].style.transform = 'translateX(-100%)';
-            images[currentIndex].style.opacity = 1;
-
-            images[currentIndex].addEventListener('transitionend', () => {
-                images[currentIndex].style.transform = 'none';
-            });
-        });
-
-        document.getElementById('right-button').addEventListener('click', () => {
-            // images[currentIndex].style.animation = 'none';
-            // images[currentIndex].style.opacity = 0;
-            currentIndex = (currentIndex + 1) % images.length;
-            // images[currentIndex].style.animation = 'fade 0.5s forwards';
-            // images[currentIndex].style.opacity = 1;
-            container.scrollLeft += 150;
-
-
-            images[currentIndex].style.transform = 'translateX(-100%)';
-            images[currentIndex].style.opacity = 0;
-
-            // Move buttons one place to the right
-            currentIndex = (currentIndex + 1) % images.length;
-
-            // Move the new image to the right and fade it in
-            images[currentIndex].style.transform = 'translateX(100%)';
-            images[currentIndex].style.opacity = 1;
-
-            // Reset the transform of the previous image
-            images[currentIndex].addEventListener('transitionend', () => {
-                images[currentIndex].style.transform = 'none';
-            });
-        });
-    </script>
+</script>
 </body>
+
 </html>
 
 
