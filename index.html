@@ -8,28 +8,31 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
+    <div class="navParent">
+        <div class="container">
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+        </div>
     </div>
 
-    <div style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: 20px;z-index: 1000;position: relative;">
+    <div
+        style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: -20px;z-index: 1000;position: relative;">
         <button id="left-button">Left</button>
         <div class="image-container">
             <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg"
@@ -41,65 +44,104 @@
     </div>
 
     <script>
-        const container = document.querySelectorAll('.child');
-        let NumberOfChild = container.length;
-        let buttonClicked = 0;
-        let angleToRotate=360/NumberOfChild;
-        console.log("container", angleToRotate)
+        var circulerNavigaterWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            circulerNavigaterWidth = window.innerWidth;
+            console.log("circulerNavigaterWidth", circulerNavigaterWidth)
+            const container = document.querySelector('.container')
+            const navParent = document.querySelector('.navParent');
+            const childContainer = document.querySelectorAll('.child');
+            childContainer?.forEach((obj) => {
+                obj.style.width = `${circulerNavigaterWidth}px`;
+                obj.style.height = `${circulerNavigaterWidth}px`;
+            })
 
-        const images = document.querySelectorAll('.image');
-        let currentIndex = 0;
-        images[currentIndex].style.opacity = 1;
-
-        let buttons = document.querySelectorAll('.topButtons');
-
-        let leftClicked = 0;
-        let righjtClicked = 0;
-
-        let angle = 0;
-        container?.forEach((item) => {
-            item.style.transform = `rotate(${angle}deg)`;
-            angle += angleToRotate;
-        })
-
-        document.getElementById('left-button').addEventListener('click', () => {
-            if (buttonClicked > -NumberOfChild) {
-                buttonClicked--;
-                container?.forEach((item) => {
-                    let str = item.style.transform;
-                    const regex = /(\d+)/;
-                    let degree;
-                    const match = str.match(regex);
-                    if (match) {
-                        degree = parseInt(match[0], 10); // Convert the matched string to an integer
-                        console.log("degree", degree); // This will output 510
-                    }
-
-                    item.style.transform = `rotate(${degree - angleToRotate}deg)`;
-                    angle -= angleToRotate;
-                })
-            }
-
+            navParent.style.height = `${circulerNavigaterWidth * 30 / 100}px`;
+            navParent.style.width = `${circulerNavigaterWidth}px`;
+            console.log("childContainer", childContainer)
+            container.style.width = `${circulerNavigaterWidth}px`;
+            container.style.height = `${circulerNavigaterWidth}px`;
+            console.log("hukluklui")
+            repeatFunction();
         });
+        console.log("width", circulerNavigaterWidth)
+        const repeatFunction = () => {
+            const childContainer = document.querySelectorAll('.child');
+            let NumberOfChild = childContainer.length;
+            let buttonClicked = 0;
+            let angleToRotate = 360 / NumberOfChild;
+            // console.log("container", container)
 
-        document.getElementById('right-button').addEventListener('click', () => {
-            if (buttonClicked < NumberOfChild) {
-                buttonClicked++;
-                container?.forEach((item) => {
-                    let str = item.style.transform;
-                    const regex = /(\d+)/;
-                    let degree;
-                    const match = str.match(regex);
-                    if (match) {
-                        degree = parseInt(match[0], 10); // Convert the matched string to an integer
-                        console.log("degree", degree); // This will output 510
-                    }
-                    item.style.transform = `rotate(${degree + angleToRotate}deg)`;
-                    angle += angleToRotate;
-                })
-            }
-        });
+            const images = document.querySelectorAll('.image');
+            let currentIndex = 0;
+            images[currentIndex].style.opacity = 1;
 
+            let leftClicked = 0;
+            let righjtClicked = 0;
+
+            let angle = 0;
+            childContainer?.forEach((item) => {
+                item.style.transform = `rotate(${angle}deg)`;
+                angle += angleToRotate;
+            })
+
+            document.getElementById('left-button').addEventListener('click', () => {
+                images[currentIndex].style.opacity = 0;
+                images[currentIndex].style.removeProperty('animation')
+
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+                images[currentIndex].style.opacity = 1;
+
+                images[currentIndex].style.animation = `myOrbit 2s linear`;
+
+                if (buttonClicked > -NumberOfChild) {
+                    buttonClicked--;
+                    childContainer?.forEach((item) => {
+                        let str = item.style.transform;
+                        const regex = /(\d+)/;
+                        let degree;
+                        const match = str.match(regex);
+                        if (match) {
+                            degree = parseInt(match[0], 10); // Convert the matched string to an integer
+                            console.log("degree", degree); // This will output 510
+                        }
+
+                        item.style.transform = `rotate(${degree - angleToRotate}deg)`;
+                        angle -= angleToRotate;
+                    })
+                }
+
+            });
+
+            document.getElementById('right-button').addEventListener('click', () => {
+                images[currentIndex].style.opacity = 0;
+                images[currentIndex].style.removeProperty('animation')
+                // images[currentIndex].style.transform = 'translateX(100%)';
+
+                currentIndex = (currentIndex + 1 + images.length) % images.length;
+
+                images[currentIndex].style.opacity = 1;
+                images[currentIndex].style.animation = `myOrbit 2s linear`;
+                if (buttonClicked < NumberOfChild) {
+                    buttonClicked++;
+                    childContainer?.forEach((item) => {
+                        let str = item.style.transform;
+                        const regex = /(\d+)/;
+                        let degree;
+                        const match = str.match(regex);
+                        if (match) {
+                            degree = parseInt(match[0], 10); // Convert the matched string to an integer
+                            console.log("degree", degree); // This will output 510
+                        }
+                        item.style.transform = `rotate(${degree + angleToRotate}deg)`;
+                        angle += angleToRotate;
+                    })
+                }
+            });
+
+        }
+        repeatFunction();
     </script>
 </body>
 
