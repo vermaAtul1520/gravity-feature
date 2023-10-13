@@ -1,340 +1,106 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="index.css">
     <title>Document</title>
 </head>
+
 <body>
-    <div style="display: flex; justify-content: center;flex-direction: column; align-items: center;height:100vh;">
-        <div id="div-container" class="" >
-            <div class="topButtons" id="button1">
-                <Button>To click1</Button>
-            </div>
-            <div class="topButtons" id="button2">
-                <Button>To click2</Button>
-            </div>
-            <div class="topButtons" id="button3">
-                <Button>To click3</Button>
-            </div>
-            <div class="topButtons" id="button4">
-                <Button>To click4</Button>
-            </div>
-            <div class="topButtons" id="button5">
-                <Button>To click5</Button>
-            </div>
-            <div class="topButtons" id="button6">
-                <Button>To click1</Button>
-            </div>
-            <div class="topButtons" id="button7">
-                <Button>To click2</Button>
-            </div>
-            <div class="topButtons" id="button8">
-                <Button>To click3</Button>
-            </div>
-            <div class="topButtons" id="button9">
-                <Button>To click4</Button>
-            </div>
-            <div class="topButtons" id="button10">
-                <Button>To click5</Button>
-            </div>
-            <div class="topButtons" id="button11">
-                <Button>To click1</Button>
-            </div>
-            <div class="topButtons" id="button12">
-                <Button>To click2</Button>
-            </div>
-            <div class="topButtons" id="button13">
-                <Button>To click3</Button>
-            </div>
-            <div class="topButtons" id="button14">
-                <Button>To click4</Button>
-            </div>
-            <div class="topButtons" id="button15">
-                <Button>To click5</Button>
-            </div>
-            <div class="topButtons" id="button16">
-                <Button>To click1</Button>
-            </div>
-            <div class="topButtons" id="button17">
-                <Button>To click2</Button>
-            </div>
-            <div class="topButtons" id="button18">
-                <Button>To click3</Button>
-            </div>
-            <div class="topButtons" id="button19">
-                <Button>To click4</Button>
-            </div>
-            <div class="topButtons" id="button20">
-                <Button>To click5</Button>
-            </div>
-        </div>
-        <div style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: 20px;">
-            <button id="left-button">Left</button>
-            <div class="image-container">
-                <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg" alt="Image 1">
-                <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
-                <img class="image" src="portrait-orientation.jpg" alt="Image 3">
-            </div>
-        
-            <button id="right-button">Right</button>
-        </div>
+    <div class="container">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
     </div>
 
-<script>
-    const container = document.getElementById('div-container');
-    const images = document.querySelectorAll('.image');
-    let currentIndex = 0;
-    images[currentIndex].style.opacity = 1;
-
-    let buttons = document.querySelectorAll('.topButtons');
-  
-    let topPosition = 150;
-    let leftPosition = 0;
-
-    let flag = false;
-    buttons?.forEach((item) => {
-        const id = item.getAttribute('id');
-        const buttonElement = document.getElementById(id);
-        // console.log("buttonElement",buttonElement)
-        buttonElement.style.top = `${topPosition}px`;
-        buttonElement.style.left = `${leftPosition}px`;
-
-        // buttonElement.style.transform=  translate(`${topPosition}px`, `${leftPosition}px`);
-
-        //  "translate(" + (topPosition - 7) + "px," + (leftPosition - 7) + "px)";
-        // `translateX(${topPosition}px) translateY(${leftPosition}px)`;
-
-        if (!flag && topPosition <= 20) {
-            flag = true;
-        }
-        if (flag) {
-            topPosition += 40;
-        }
-        else {
-            topPosition -= 40;
-        }
-        leftPosition += 120;
-    })
-
-    document.getElementById('left-button').addEventListener('click', () => {
-        // images[currentIndex].style.animation = 'none';
-        images[currentIndex].style.opacity = 0;
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        // images[currentIndex].style.animation = 'fade 0.5s forwards';
-        // images[currentIndex].style.opacity = 1;
-    // container.scrollLeft -= 150;
-
-
-        images[currentIndex].style.transform = 'translateX(100%)';
-        images[currentIndex].style.opacity = 0;
-
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-
-        images[currentIndex].style.transform = 'translateX(-100%)';
-        images[currentIndex].style.opacity = 1;
-
-        images[currentIndex].addEventListener('transitionend', () => {
-            images[currentIndex].style.transform = 'none';
-        });
-
-
-        let topPosition = 150;
-        let leftPosition = 0;
-
-        let flag = false;
-        let buttons = document.querySelectorAll('.topButtons');
-    
-        let tmpArray = [...buttons];
-        if (rightClickCount>0) {
-            rightClickCount--
-            tmpArray?.slice(rightClickCount, tmpArray?.length)?.forEach((item) => {
-                const id = item.getAttribute('id');
-                const buttonElement = document.getElementById(id);
-                // console.log("buttonElement",buttonElement)
-
-                // buttonElement.style.top = `${topPosition}px`;
-                // buttonElement.style.left = `${leftPosition}px`;
-
-                // buttonElement.style.transform= "translate(" + (120) + "px," + (40) + "px)";
-
-                // translate(`${topPosition}px`, `${leftPosition}px`);
-                // `translateX(${topPosition}px) translateY(${leftPosition}px)`;
-
-                if (!flag && topPosition <= 20) {
-                    flag = true;
-                }
-                if (flag) {
-                    topPosition += 40;
-                    buttonElement.style.transform=`translateY(40px)`;
-                }
-                else {
-                    topPosition -= 40;
-                    buttonElement.style.transform=`translateY(-40px)`;
-                }
-                leftPosition += 120;
-                buttonElement.style.transform=`translateX(120px)`;
-            })
-        }
-
-    });
-
-    let rightClickCount=0;
-    document.getElementById('right-button').addEventListener('click', () => {
-        // images[currentIndex].style.animation = 'none';
-        // images[currentIndex].style.opacity = 0;
-        currentIndex = (currentIndex + 1) % images.length;
-        // images[currentIndex].style.animation = 'fade 0.5s forwards';
-        // images[currentIndex].style.opacity = 1;
-        
-        // container.scrollLeft += 150;
-
-
-        images[currentIndex].style.transform = 'translateX(-100%)';
-        images[currentIndex].style.opacity = 0;
-
-        // Move buttons one place to the right
-        currentIndex = (currentIndex + 1) % images.length;
-
-        // Move the new image to the right and fade it in
-        images[currentIndex].style.transform = 'translateX(100%)';
-        images[currentIndex].style.opacity = 1;
-
-        // Reset the transform of the previous image
-        images[currentIndex].addEventListener('transitionend', () => {
-            images[currentIndex].style.transform = 'none';
-        });
-
-        let topPosition = 150;
-        let leftPosition = 0;
-
-        let flag = false;
-        let buttons = document.querySelectorAll('.topButtons');
-    
-        let tmpArray=[...buttons];
-        if(tmpArray?.length-rightClickCount>9){
-            rightClickCount++
-            tmpArray?.slice(rightClickCount,tmpArray?.length)?.forEach((item) => {
-            const id = item.getAttribute('id');
-            const buttonElement = document.getElementById(id);
-
-            // console.log("buttonElement",buttonElement)
-            // buttonElement.style.top = `${topPosition}px`;
-            // buttonElement.style.left = `${leftPosition}px`;
-
-            // buttonElement.style.transform="translate(" + (120) + "px," + (40) + "px)"; 
-
-            // translate(`${topPosition}px`, `${leftPosition}px`);
-            // `translateX(${topPosition}px) translateY(${leftPosition}px)`;
-
-                if (!flag && topPosition <= 20) {
-                    flag = true;
-                }
-
-                if (flag) {
-                    topPosition += 40;
-                    buttonElement.style.transform = `translateY(40px)`;
-                }
-                else {
-                    topPosition -= 40;
-                    buttonElement.style.transform = `translateY(-40px)`;
-                }
-                leftPosition += 120;
-                buttonElement.style.transform = `translateX(120px)`;
-            })
-        }
-
-    });
-
-</script>
-</body>
-
-</html>
-
-
-
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Image Slideshow with Opposite Direction Move</title>
-    <style>
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            width: 300px;
-            height: 200px;
-        }
-
-        .image {
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.5s, transform 0.5s; /* Add transitions for opacity and transform */
-        }
-
-        #left-button, #right-button {
-            cursor: pointer;
-            display: inline-block;
-            margin: 10px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <div class="image-container">
-        <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg" alt="Image 1">
-        <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
-        <img class="image" src="portrait-orientation.jpg" alt="Image 3">
+    <div style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: 20px;z-index: 1000;position: relative;">
+        <button id="left-button">Left</button>
+        <div class="image-container">
+            <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg"
+                alt="Image 1">
+            <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
+            <img class="image" src="portrait-orientation.jpg" alt="Image 3">
+        </div>
+        <button id="right-button">Right</button>
     </div>
-
-    <button id="left-button">Left</button>
-    <button id="right-button">Right</button>
 
     <script>
+        const container = document.querySelectorAll('.child');
+        let NumberOfChild = container.length;
+        let buttonClicked = 0;
+        let angleToRotate=360/NumberOfChild;
+        console.log("container", angleToRotate)
+
         const images = document.querySelectorAll('.image');
         let currentIndex = 0;
-
-        // Initially display the first image with a transition
         images[currentIndex].style.opacity = 1;
 
+        let buttons = document.querySelectorAll('.topButtons');
+
+        let leftClicked = 0;
+        let righjtClicked = 0;
+
+        let angle = 0;
+        container?.forEach((item) => {
+            item.style.transform = `rotate(${angle}deg)`;
+            angle += angleToRotate;
+        })
+
         document.getElementById('left-button').addEventListener('click', () => {
-            // Move the current image to the right and fade it out
-            images[currentIndex].style.transform = 'translateX(100%)';
-            images[currentIndex].style.opacity = 0;
+            if (buttonClicked > -NumberOfChild) {
+                buttonClicked--;
+                container?.forEach((item) => {
+                    let str = item.style.transform;
+                    const regex = /(\d+)/;
+                    let degree;
+                    const match = str.match(regex);
+                    if (match) {
+                        degree = parseInt(match[0], 10); // Convert the matched string to an integer
+                        console.log("degree", degree); // This will output 510
+                    }
 
-            // Move buttons one place to the left
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    item.style.transform = `rotate(${degree - angleToRotate}deg)`;
+                    angle -= angleToRotate;
+                })
+            }
 
-            // Move the new image to the left and fade it in
-            images[currentIndex].style.transform = 'translateX(-100%)';
-            images[currentIndex].style.opacity = 1;
-
-            // Reset the transform of the previous image
-            images[currentIndex].addEventListener('transitionend', () => {
-                images[currentIndex].style.transform = 'none';
-            });
         });
 
         document.getElementById('right-button').addEventListener('click', () => {
-            // Move the current image to the left and fade it out
-            images[currentIndex].style.transform = 'translateX(-100%)';
-            images[currentIndex].style.opacity = 0;
-
-            // Move buttons one place to the right
-            currentIndex = (currentIndex + 1) % images.length;
-
-            // Move the new image to the right and fade it in
-            images[currentIndex].style.transform = 'translateX(100%)';
-            images[currentIndex].style.opacity = 1;
-
-            // Reset the transform of the previous image
-            images[currentIndex].addEventListener('transitionend', () => {
-                images[currentIndex].style.transform = 'none';
-            });
+            if (buttonClicked < NumberOfChild) {
+                buttonClicked++;
+                container?.forEach((item) => {
+                    let str = item.style.transform;
+                    const regex = /(\d+)/;
+                    let degree;
+                    const match = str.match(regex);
+                    if (match) {
+                        degree = parseInt(match[0], 10); // Convert the matched string to an integer
+                        console.log("degree", degree); // This will output 510
+                    }
+                    item.style.transform = `rotate(${degree + angleToRotate}deg)`;
+                    angle += angleToRotate;
+                })
+            }
         });
+
     </script>
 </body>
-</html> -->
+
+</html>
