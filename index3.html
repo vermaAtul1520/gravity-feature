@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elements Following Elliptical Path</title>
+    <style>
+        .element {
+            width: 40px;
+            height: 20px;
+            background-color: aqua;
+            position: absolute;
+            border-top: 4px dotted red;
+            transform-origin: center center;
+            transition: .5s ease ;
+        }
+
+        .wrapper {
+            /* height: 100px; */
+            /* overflow: hidden; */
+            transition: .5s ease;
+        }
+
+        .image {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            /* opacity: 0; */
+            transition: opacity 1s, transform 1s;
+            /* animation: fade 0.5s forwards; */
+            /* transform: translate(30px, 20px) rotate(20deg); */
+        }
+
+        #left-button,
+        #right-button {
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .image-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="container" style="position: relative; width: 20vw; height: 100%;margin-top: 55px;"></div>
+        <div
+            style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: -20px;z-index: 1000;position: relative;">
+            <button id="left-button">Left</button>
+            <div class="image-container">
+                <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg"
+                    alt="Image 1">
+                <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
+                <img class="image" src="portrait-orientation.jpg" alt="Image 3">
+            </div>
+            <button id="right-button">Right</button>
+        </div>
+    </div>
+
+    <script>
+        var container = document.getElementById("container");
+        var numElements = 30;
+        var centerX = window.innerWidth / 2;
+        var centerY = window.innerHeight / 2;
+        var radiusX = 450;
+        var radiusY = 250;
+        var angleIncrement = (2 * Math.PI) / numElements;
+
+        var topIndex = parseInt(numElements * (3 / 4)) + 1;
+
+        for (var i = 0; i < numElements; i++) {
+            var element = document.createElement("div");
+            element.className = "element";
+            var angle = i * angleIncrement;
+            var x = centerX + radiusX * Math.cos(angle);
+            var y = centerY + radiusY * Math.sin(angle);
+
+            // Calculate the local tangent angle
+            var tangentAngle = Math.atan2(-radiusX * Math.sin(angle), radiusY * Math.cos(angle));
+
+            // Apply position and rotation
+            element.style.left = x + "px";
+            element.style.top = y + "px";
+            element.style.cursor = 'pointer';
+            element.setAttribute("dataid", i + 1);
+            element.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) + "deg)";
+            element.addEventListener("click", function (event) {
+                // Handle the click event for each element here
+                var dataId = event.target.getAttribute("dataid");
+                // alert("You clicked an element!");
+                // console.log(event.target,Number(dataId))
+                movingButtons(dataId);
+
+            });
+            container.appendChild(element);
+        }
+
+
+        const movingButtons = (id) => {
+
+            var allChilds = document.querySelectorAll('.element');
+            let tmpIndex=topIndex - id;
+            allChilds?.forEach((obj) => {
+                var currIndex=obj.getAttribute('dataid');
+                console.log("currIndexAff",typeof(currIndex))
+                currIndex=(Math.abs(tmpIndex+Number(currIndex))%numElements);
+                console.log("currIndex",currIndex)
+                // let currIndex=(topIndex - tmpIndex)%allChilds?.length;
+                var angle =  currIndex* angleIncrement;
+                var x = centerX + radiusX * Math.cos(angle);
+                var y = centerY + radiusY * Math.sin(angle);
+
+                obj.style.left = x + "px";
+                obj.style.top = y + "px";
+                obj.setAttribute("dataid", Math.abs(currIndex));
+
+                var tangentAngle = Math.atan2(-radiusX * Math.sin(angle), radiusY * Math.cos(angle));
+                obj.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) + "deg)";
+            })
+            console.log("iddd", topIndex - tmpIndex, allChilds);
+
+        }
+
+
+
+        document.getElementById('left-button').addEventListener('click', () => {
+
+            // images[currentIndex].style.opacity = 0;
+            // images[currentIndex].style.removeProperty('animation')
+
+            // currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+            // images[currentIndex].style.opacity = 1;
+
+            //images[currentIndex].style.animation = `myOrbit 2s linear`;
+
+
+
+            var allChilds = document.querySelectorAll('.element');
+            allChilds?.forEach((obj) => {
+                var currIndex = obj.getAttribute('dataid');
+                console.log("currIndexAff", typeof(Number(currIndex)))
+                currIndex = (Number(currIndex)+1) % numElements
+                currIndex=Math.abs(currIndex);
+                console.log("currIndex", currIndex)
+                // let currIndex=(topIndex - tmpIndex)%allChilds?.length;
+                var angle = currIndex * angleIncrement;
+                var x = centerX + radiusX * Math.cos(angle);
+                var y = centerY + radiusY * Math.sin(angle);
+
+                obj.style.left = x + "px";
+                obj.style.top = y + "px";
+                obj.setAttribute("dataid", currIndex);
+
+                var tangentAngle = Math.atan2(-radiusX * Math.sin(angle), radiusY * Math.cos(angle));
+                obj.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) + "deg)";
+            })
+
+        });
+
+        document.getElementById('right-button').addEventListener('click', () => {
+            console.log("rhtt clicked")
+            // images[currentIndex].style.opacity = 0;
+            // images[currentIndex].style.removeProperty('animation')
+            // images[currentIndex].style.transform = 'translateX(100%)';
+
+            // currentIndex = (currentIndex + 1 + images.length) % images.length;
+
+            // images[currentIndex].style.opacity = 1;
+            // images[currentIndex].style.animation = `myOrbit 2s linear`;
+
+
+            var allChilds = document.querySelectorAll('.element');
+            allChilds?.forEach((obj) => {
+                var currIndex = obj.getAttribute('dataid');
+                console.log("currIndexAff", typeof(Number(currIndex)))
+                currIndex = (Number(currIndex)-1+numElements) % numElements;
+                currIndex=Math.abs(currIndex);
+                console.log("currIndex", currIndex)
+                // let currIndex=(topIndex - tmpIndex)%allChilds?.length;
+                var angle = currIndex * angleIncrement;
+                var x = centerX + radiusX * Math.cos(angle);
+                var y = centerY + radiusY * Math.sin(angle);
+
+                obj.style.left = x + "px";
+                obj.style.top = y + "px";
+                obj.setAttribute("dataid", currIndex);
+
+                var tangentAngle = Math.atan2(-radiusX * Math.sin(angle), radiusY * Math.cos(angle));
+                obj.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) + "deg)";
+            })
+        });
+
+
+    </script>
+</body>
+
+</html>
