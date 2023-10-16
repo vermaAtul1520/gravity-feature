@@ -28,10 +28,22 @@
             <div class="child"></div>
             <div class="child"></div>
             <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
+            <div class="child"></div>
         </div>
     </div>
 
-    <div
+    <!-- <div
         style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: -20px;z-index: 1000;position: relative;">
         <button id="left-button">Left</button>
         <div class="image-container">
@@ -41,27 +53,54 @@
             <img class="image" src="portrait-orientation.jpg" alt="Image 3">
         </div>
         <button id="right-button">Right</button>
-    </div>
+    </div> -->
 
     <script>
-        var circulerNavigaterWidth = window.innerWidth;
+        var circulerNavigaterWidth = 600;
+        let ELIPSE_A = circulerNavigaterWidth/2
+        var CENTER = {h:ELIPSE_A, k: 250}
+        let ELIPSE_B = ELIPSE_A*2/3
+
+
+        const getYCordinate=(x, center, a, b)=>{
+            //  center = {h:"10",k:"50"}
+            console.log("inYy",)
+             return center.k+Math.sqrt(Math.abs(b*b*(1-((x-center.h)*(x-center.h))/a*a)))
+        }
+        const container = document.querySelector('.container')
+
+        // container.style.width = `${circulerNavigaterWidth}px`;
+        container.style.width = `${circulerNavigaterWidth}px`;
+            container.style.height = `${circulerNavigaterWidth/2}px`;
+
+        const getSlopeOfTangentInDegree=(x,y,a,b,center)=>{
+            console.log("a*a*(y-Number(center.k)))",a*a*(y-Number(center.k)))
+            return (-b*b*(x-center.h)/a*a*(y-Number(center.k)))*180/Math.PI;
+        }
+        
         window.addEventListener('resize', () => {
-            circulerNavigaterWidth = window.innerWidth;
+
             console.log("circulerNavigaterWidth", circulerNavigaterWidth)
             const container = document.querySelector('.container')
             const navParent = document.querySelector('.navParent');
             const childContainer = document.querySelectorAll('.child');
+            let xPos=0;
+            let yPos=50;
+
             childContainer?.forEach((obj) => {
-                obj.style.width = `${circulerNavigaterWidth}px`;
-                obj.style.height = `${circulerNavigaterWidth}px`;
+                console.log("xPos",xPos,yPos)
+                obj.style["margin-left"] = `${xPos}px`;
+                obj.style["margin-top"] = `${yPos}px`;
+                // xPos+=30;
+                // yPos-=10;
             })
 
-            navParent.style.height = `${circulerNavigaterWidth * 30 / 100}px`;
-            navParent.style.width = `${circulerNavigaterWidth}px`;
-            console.log("childContainer", childContainer)
-            container.style.width = `${circulerNavigaterWidth}px`;
-            container.style.height = `${circulerNavigaterWidth}px`;
-            console.log("hukluklui")
+            // navParent.style.height = `${circulerNavigaterWidth * 30 / 100}px`;
+            // navParent.style.width = `${circulerNavigaterWidth}px`;
+            // console.log("childContainer", childContainer)
+            // container.style.width = `${circulerNavigaterWidth}px`;
+            // container.style.height = `${circulerNavigaterWidth/2}px`;
+            // console.log("hukluklui")
             repeatFunction();
         });
         console.log("width", circulerNavigaterWidth)
@@ -72,73 +111,80 @@
             let angleToRotate = 360 / NumberOfChild;
             // console.log("container", container)
 
-            const images = document.querySelectorAll('.image');
+            // const images = document.querySelectorAll('.image');
             let currentIndex = 0;
-            images[currentIndex].style.opacity = 1;
+            // images[currentIndex].style.opacity = 1;
 
             let leftClicked = 0;
             let righjtClicked = 0;
 
             let angle = 0;
+    
+            let count = 1
             childContainer?.forEach((item) => {
-                item.style.transform = `rotate(${angle}deg)`;
-                angle += angleToRotate;
+                let y = getYCordinate(-277.17, CENTER, ELIPSE_A,ELIPSE_B)
+                let x = -300
+                let angle = getSlopeOfTangentInDegree(5*count,y,ELIPSE_A,ELIPSE_B,CENTER)
+                item.style.transform = `rotate(${getSlopeOfTangentInDegree(30*count,y,ELIPSE_A,ELIPSE_B,CENTER)}deg)`;
+                count += 1;
+                console.log("yyyyy",y)
+                // plot(x,y,angle)giut
             })
 
-            document.getElementById('left-button').addEventListener('click', () => {
-                images[currentIndex].style.opacity = 0;
-                images[currentIndex].style.removeProperty('animation')
+            // document.getElementById('left-button').addEventListener('click', () => {
+            //     // images[currentIndex].style.opacity = 0;
+            //     // images[currentIndex].style.removeProperty('animation')
 
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
+            //     // currentIndex = (currentIndex - 1 + images.length) % images.length;
 
-                images[currentIndex].style.opacity = 1;
+            //     // images[currentIndex].style.opacity = 1;
 
-                images[currentIndex].style.animation = `myOrbit 2s linear`;
+            //     //images[currentIndex].style.animation = `myOrbit 2s linear`;
 
-                if (buttonClicked > -NumberOfChild) {
-                    buttonClicked--;
-                    childContainer?.forEach((item) => {
-                        let str = item.style.transform;
-                        const regex = /(\d+)/;
-                        let degree;
-                        const match = str.match(regex);
-                        if (match) {
-                            degree = parseInt(match[0], 10); // Convert the matched string to an integer
-                            console.log("degree", degree); // This will output 510
-                        }
+            //     if (buttonClicked > -NumberOfChild) {
+            //         buttonClicked--;
+            //         childContainer?.forEach((item) => {
+            //             let str = item.style.transform;
+            //             const regex = /(\d+)/;
+            //             let degree;
+            //             const match = str.match(regex);
+            //             if (match) {
+            //                 degree = parseInt(match[0], 10); // Convert the matched string to an integer
+            //                 console.log("degree", degree); // This will output 510
+            //             }
 
-                        item.style.transform = `rotate(${degree - angleToRotate}deg)`;
-                        angle -= angleToRotate;
-                    })
-                }
+            //             item.style.transform = `rotate(${degree - angleToRotate}deg)`;
+            //             angle -= angleToRotate;
+            //         })
+            //     }
 
-            });
+            // });
 
-            document.getElementById('right-button').addEventListener('click', () => {
-                images[currentIndex].style.opacity = 0;
-                images[currentIndex].style.removeProperty('animation')
+            // document.getElementById('right-button').addEventListener('click', () => {
+                // images[currentIndex].style.opacity = 0;
+                // images[currentIndex].style.removeProperty('animation')
                 // images[currentIndex].style.transform = 'translateX(100%)';
 
-                currentIndex = (currentIndex + 1 + images.length) % images.length;
+                // currentIndex = (currentIndex + 1 + images.length) % images.length;
 
-                images[currentIndex].style.opacity = 1;
-                images[currentIndex].style.animation = `myOrbit 2s linear`;
-                if (buttonClicked < NumberOfChild) {
-                    buttonClicked++;
-                    childContainer?.forEach((item) => {
-                        let str = item.style.transform;
-                        const regex = /(\d+)/;
-                        let degree;
-                        const match = str.match(regex);
-                        if (match) {
-                            degree = parseInt(match[0], 10); // Convert the matched string to an integer
-                            console.log("degree", degree); // This will output 510
-                        }
-                        item.style.transform = `rotate(${degree + angleToRotate}deg)`;
-                        angle += angleToRotate;
-                    })
-                }
-            });
+                // images[currentIndex].style.opacity = 1;
+                // images[currentIndex].style.animation = `myOrbit 2s linear`;
+            //     if (buttonClicked < NumberOfChild) {
+            //         buttonClicked++;
+            //         childContainer?.forEach((item) => {
+            //             let str = item.style.transform;
+            //             const regex = /(\d+)/;
+            //             let degree;
+            //             const match = str.match(regex);
+            //             if (match) {
+            //                 degree = parseInt(match[0], 10); // Convert the matched string to an integer
+            //                 console.log("degree", degree); // This will output 510
+            //             }
+            //             item.style.transform = `rotate(${degree + angleToRotate}deg)`;
+            //             angle += angleToRotate;
+            //         })
+            //     }
+            // });
 
         }
         repeatFunction();
