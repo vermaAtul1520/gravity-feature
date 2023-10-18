@@ -1,142 +1,221 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <title>Elements Following Elliptical Path</title>
     <style>
-        .element {
-            width: 40px;
-            height: 20px;
-            background-color: aqua;
+        .parent {
+            position: relative;
+            /* background-image: url(https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Group_717_66867698-9da2-44bc-9f5c-70b37fa58c3b.png?v=1697543988); */
+            /* background-size: 100% 100%; */
+            /* background-repeat: no-repeat; */
+            z-index: 2;
+            /* background-position: center; */
+            top: 2rem;
+            /* aspect-ratio:5760/2946; */
+            /* background-color: yellow; */
+            /* clip-path: ellipse(80px 50px); */
+        }
+
+        .parent1 {
             position: absolute;
-            border-top: 4px dotted red;
+            z-index: 0;
+            background-color: yellow;
+            clip-path: ellipse(80px 50px);
+            width: 100%;
+            height: 100%;
+            top:-10rem
+        }
+
+        .element {
+            padding: 8px 40px 8px 40px;
+            background-color: red;
+            position: absolute;
             transform-origin: center center;
             transition: .5s ease;
-            border-radius: 10px;
+            border-radius: 20px;
+            display: flex !important;
+            min-width: 70px;
+            text-align: center;
         }
 
         .wrapper {
-            position: relative;
-            height: 45vh;
-            margin-top: 55px;
+            position: absolute;
+            height: 40vh;
+            margin-top: -75px;
             overflow: hidden;
+            width: 100%;
+
         }
 
         .image {
-            width: 150px;
-            height: 150px;
+            width: 250px;
+            height: 250px;
             position: absolute;
-            /* opacity: 0; */
-            transition: opacity 1s, transform 1s;
-            /* animation: fade 0.5s forwards; */
-            /* transform: translate(30px, 20px) rotate(20deg); */
         }
 
         #left-button,
         #right-button {
             cursor: pointer;
-            display: inline-block;
-            margin: 10px;
-            padding: 10px;
-            background-color: #333;
-            color: #fff;
+            margin-bottom: 87px;
+            background-color: transparent;
+            border: none
         }
 
-        /* .image-slider {
+        .image-container {
             display: flex;
-            transition: transform 1s ease-in-out;
-        } */
+            justify-content: space-evenly;
+            flex-direction: row;
+            align-items: flex-end;
+            margin-top: 80px;
+            z-index: 1000;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
 
-        /* .image-slider img {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-        } */
+        .image-slider {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #container{
+            position: relative; 
+            width: 100%; 
+            height: 100%;
+            margin-top: -50px;
+        }
 
         @keyframes slide-out-left {
             0% {
-                bottom: 0;
-                left: 0;
-                transform: translateX(0);
-                transform: rotate(-360deg);
-                /* transition: transform 1s ease-in-out; */
+                transform: translateY(160%);
             }
 
             100% {
-                bottom: 50%;
-                left: 50%;
-                transform: translateX(-50%) translateY(-50%);
-                transform: rotate(0deg);
-                /* transition: transform 1s ease-in-out; */
+                transform: translateY(0);
             }
 
         }
 
+
         @keyframes slide-out-right {
             0% {
-                bottom: 50%;
-                left: 50%;
-                transform: translateX(0);
-                transform: rotate(0deg);
-                /* transition: transform 1s ease-in-out; */
+                transform: translateY(0);
             }
 
             100% {
-                bottom: 0%;
-                left: 100%;
-                transform: translateX(-50%) translateY(50%);
-                transform: rotate(360deg);
-                /* transition: transform 2s ease-in-out; */
+                transform: translateY(200%);
             }
-
         }
     </style>
 </head>
 
 <body>
-    <div class="wrapper">
-        <div id="container" style="position: relative; width: 20vw; height: 100%;margin-top: 55px;"></div>
-    </div>
-    <div
-        style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: -20px;z-index: 1000;position: relative;">
-        <button id="left-button">Left</button>
-        <div class="image-slider">
-            <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg"
-                alt="Image 1">
-            <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
-            <img class="image" src="portrait-orientation.jpg" alt="Image 3">
+    <div class='parent'>
+        <div class="parent1">
+          
         </div>
-        <button id="right-button">Right</button>
+        <div class="wrapper">
+            <div id="container" style=""></div>
+            <div>
+                <div style="
+                color: #192D1E;
+                text-align: center;
+                font-family: Boldstrom;
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 64px; /* 133.333% */">
+                    Protein Bar
+                </div>
+                <div style="
+                color: #192D1E;
+                text-align: center;
+                font-family: Gotham;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 32px; /* 160% */
+                letter-spacing: -0.6px;">
+                    The delicious way to fuel your body and mind
+                </div>
+            </div>
+            
+        </div>
+        
+
+        
+        <div class="image-container">
+            <button id="left-button">
+                <svg width="97" height="93" viewBox="0 0 97 93" fill="transparent" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Group 594">
+                        <path id="Vector"
+                            d="M7.92644 24.2247C8.03236 25.6291 8.18928 27.5003 8.31481 29.3755C8.49135 31.9686 7.63613 34.24 6.05908 36.2524C4.80764 37.8452 3.5209 39.4065 2.22238 40.96C-0.747337 44.5142 -0.731644 48.4685 2.21454 51.9678C3.51698 53.5174 4.75665 55.1219 6.07085 56.6597C8.47958 59.4724 8.45212 62.7834 8.25597 66.2082C8.11866 68.6326 8.05589 71.1158 8.43642 73.4931C8.75419 75.4664 10.4529 76.6785 12.3241 77.2984C14.6387 78.0633 17.0043 78.6871 19.3659 79.3069C22.218 80.0523 24.4345 81.6136 26.0037 84.1204C27.1453 85.9446 28.2751 87.7845 29.5383 89.5262C31.8842 92.7627 34.3322 93.5669 38.1414 92.3821C39.6949 91.8996 41.221 91.3033 42.7078 90.6443C46.7171 88.8711 50.6558 89.0672 54.6102 90.8404C56.0304 91.4759 57.5133 91.9663 58.9765 92.5077C62.2483 93.7199 64.8375 92.6214 66.8618 90.0048C67.9759 88.5651 69.0077 87.0391 69.8864 85.4424C71.8754 81.8176 74.8569 79.6875 78.9015 78.9029C80.6041 78.5733 82.2714 78.0437 83.9386 77.5416C88.8345 76.0666 89.5838 71.2021 88.9915 67.2124C88.3677 62.9874 88.4109 58.9428 91.5924 55.5299C92.9694 54.0548 94.2208 52.4425 95.3977 50.8027C97.4259 47.9743 97.6299 45.0595 95.4252 42.1957C94.0718 40.4382 92.7615 38.6337 91.2629 37.0057C88.2696 33.7496 88.5639 29.8855 88.9052 25.9429C89.0425 24.358 89.0621 22.73 88.8738 21.149C88.4265 17.4301 85.8021 15.7942 82.5146 14.9351C73.0719 12.4676 73.3857 13.0952 68.0191 4.52355C65.0611 -0.20362 62.4719 -0.917584 57.2269 1.03213C55.2301 1.77357 53.1744 2.38946 51.26 3.30351C48.8826 4.44117 46.7171 3.67226 44.5202 2.93083C42.0566 2.09916 39.644 1.0949 37.1646 0.325999C34.3597 -0.544898 32.0019 0.365222 30.2091 2.62485C29.2009 3.89981 28.1574 5.20223 27.4473 6.64981C25.1877 11.2632 21.347 13.5464 16.51 14.5036C15.6312 14.6762 14.7446 14.8135 13.8816 15.041C9.50348 16.1865 7.92252 18.5128 7.93037 24.2247H7.92644Z"
+                            fill="#EC5E30" />
+                        <g id="Group 514">
+                            <path id="Vector 69" d="M76 46.7031H31.0956" stroke="#FFF9E9" stroke-width="2" />
+                            <path id="Polygon 1" d="M20 46.7286L31.3566 53.2854L31.3566 40.1719L20 46.7286Z"
+                                fill="#FFF9E9" />
+                        </g>
+                    </g>
+                </svg>
+            </button>
+            <div class="image-slider">
+                <img class="image" imageId="0"
+                    src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Group60-_Compressify.io.webp?v=1697467538"
+                    alt="Image 1">
+                <img class="image" imageId="1"
+                    src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/eb_vp_b9e56e25-6527-4bf0-8635-5c3ca7765e35.webp?v=1697467281"
+                    alt="Image 2">
+                <img class="image" imageId="2"
+                    src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Group52-_Compressify.io.webp?v=1697417723"
+                    alt="Image 3">
+            </div>
+            <button id="right-button">
+                <svg width="97" height="93" viewBox="0 0 97 93" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M89.0736 24.2247C88.9676 25.6291 88.8107 27.5003 88.6852 29.3755C88.5087 31.9686 89.3639 34.24 90.9409 36.2524C92.1924 37.8452 93.4791 39.4065 94.7776 40.96C97.7473 44.5142 97.7316 48.4685 94.7855 51.9678C93.483 53.5174 92.2434 55.1219 90.9292 56.6597C88.5204 59.4724 88.5479 62.7834 88.744 66.2082C88.8813 68.6326 88.9441 71.1158 88.5636 73.4931C88.2458 75.4664 86.5471 76.6785 84.6759 77.2984C82.3613 78.0633 79.9957 78.6871 77.6341 79.3069C74.782 80.0523 72.5655 81.6136 70.9963 84.1204C69.8547 85.9446 68.7249 87.7845 67.4617 89.5262C65.1158 92.7627 62.6678 93.5669 58.8586 92.3821C57.3051 91.8996 55.779 91.3033 54.2922 90.6443C50.2829 88.8711 46.3442 89.0672 42.3898 90.8404C40.9696 91.4759 39.4867 91.9663 38.0235 92.5077C34.7517 93.7199 32.1625 92.6214 30.1382 90.0048C29.0241 88.5651 27.9923 87.0391 27.1136 85.4424C25.1246 81.8176 22.1431 79.6875 18.0985 78.9029C16.3959 78.5733 14.7286 78.0437 13.0614 77.5416C8.16545 76.0666 7.41616 71.2021 8.00854 67.2124C8.63229 62.9874 8.58914 58.9428 5.40758 55.5299C4.0306 54.0548 2.77917 52.4425 1.60226 50.8027C-0.425931 47.9743 -0.62993 45.0595 1.5748 42.1957C2.92824 40.4382 4.23852 38.6337 5.73711 37.0057C8.73037 33.7496 8.43614 29.8855 8.09484 25.9429C7.95754 24.358 7.93792 22.73 8.12623 21.149C8.57345 17.4301 11.1979 15.7942 14.4854 14.9351C23.9281 12.4676 23.6143 13.0952 28.9809 4.52355C31.9389 -0.20362 34.5281 -0.917584 39.7731 1.03213C41.7699 1.77357 43.8256 2.38946 45.74 3.30351C48.1174 4.44117 50.2829 3.67226 52.4798 2.93083C54.9434 2.09916 57.356 1.0949 59.8354 0.325999C62.6403 -0.544898 64.9981 0.365222 66.7909 2.62485C67.7991 3.89981 68.8426 5.20223 69.5527 6.64981C71.8123 11.2632 75.653 13.5464 80.49 14.5036C81.3688 14.6762 82.2554 14.8135 83.1184 15.041C87.4965 16.1865 89.0775 18.5128 89.0696 24.2247H89.0736Z"
+                        fill="#EC5E30" />
+                    <path d="M21 46.7031H65.9044" stroke="#FFF9E9" stroke-width="2" />
+                    <path d="M77 46.7286L65.6434 53.2854L65.6434 40.1719L77 46.7286Z" fill="#FFF9E9" />
+                </svg>
+            </button>
+
+        </div>
     </div>
 
     <script>
         // All image array...
-        var images = document.querySelectorAll('.image')
+        var images = document.querySelectorAll('.image');
 
         // image index who currently on screen....
         var currentImageIndex = 0;
 
         // container containing all child divs to ellipse....
         var container = document.getElementById("container");
-        var numElements = 30;
+        var numElements = 25;
         var angleIncrement = (2 * Math.PI) / numElements;
 
         // index which will always on top ....
         var topIndex = parseInt(numElements * (3 / 4)) + 1;
 
-        var centerX = window.innerWidth / 2;
-        var centerY = window.innerHeight / 2;
-        console.log("centerX", centerX, centerX)
-        var radiusX = 650;
-        var radiusY = 250;
+        // var centerX = (window.innerWidth / 2);
+        // var centerY = window.innerHeight / 2 ;
 
+        var centerX = (window.innerWidth / 2);
+        var centerY = window.innerHeight / 2 ;
+
+        
+
+        var radiusX = centerX + .35 * centerX > 400 ? centerX + .35 * centerX : 400;
+        var radiusY = .32 * radiusX;
+        console.log("radiusX", radiusX, radiusY)
+
+        var parent = document.querySelector('.parent1');
+        parent.style['clip-path'] = `ellipse(${radiusX}px ${radiusY}px at 50% 50%)`
+
+        // console.log("dfghnjm",parent.style[clip-path])
         const initialDivPlacer = () => {
-            centerX = window.innerWidth / 2;
-            centerY = window.innerHeight / 2;
-            console.log(centerX, centerX)
-            var radiusX = 650;
-            var radiusY = 250;
-
             for (var i = 0; i < numElements; i++) {
                 var element = document.createElement("div");
                 element.className = "element";
@@ -152,12 +231,11 @@
                 element.style.top = y + "px";
                 element.style.cursor = 'pointer';
                 element.setAttribute("dataid", i + 1);
+                element.innerHTML = `Button${i + 1}`;
                 element.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) + "deg)";
                 element.addEventListener("click", function (event) {
                     // Handle the click event for each element here
                     var dataId = event.target.getAttribute("dataid");
-                    // alert("You clicked an element!");
-                    // console.log(event.target,Number(dataId))
                     movingButtons(dataId);
 
                 });
@@ -169,25 +247,29 @@
         initialDivPlacer();
 
         window.addEventListener('resize', () => {
-            // initialDivPlacer();
+            console.log("centerX", centerX, centerY)
             centerX = window.innerWidth / 2;
-            centerY = window.innerHeight / 2;
-            console.log(centerX, centerX)
+            centerY = window.innerHeight / 2 ;
+            console.log("centerX", centerX, centerY)
+
+            radiusX = centerX + .35 * centerX > 400 ? centerX + .35 * centerX : 400
+            radiusY = .32 * radiusX;
+
+            parent.style['clip-path'] = `ellipse(${radiusX}px ${radiusY}px at 50% 50%)`
+
+
             var allChilds = document.querySelectorAll('.element');
-            // let tmpIndex = topIndex - id;
             allChilds?.forEach((obj) => {
                 var currIndex = obj.getAttribute('dataid');
                 console.log("currIndexAff", typeof (currIndex))
                 currIndex = (Number(currIndex) % numElements);
                 console.log("currIndex", currIndex)
-                // let currIndex=(topIndex - tmpIndex)%allChilds?.length;
                 var angle = currIndex * angleIncrement;
                 var x = centerX + radiusX * Math.cos(angle);
                 var y = centerY + radiusY * Math.sin(angle);
 
                 obj.style.left = x + "px";
                 obj.style.top = y + "px";
-                // obj.setAttribute("dataid", Math.abs(currIndex));
 
                 var tangentAngle = Math.atan2(-radiusX * Math.sin(angle), radiusY * Math.cos(angle));
                 obj.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) % 360 + "deg)";
@@ -195,6 +277,9 @@
         });
 
         const movingButtons = (id) => {
+
+            imageTransition(currentImageIndex, id);
+
             var allChilds = document.querySelectorAll('.element');
             let tmpIndex = topIndex - id;
             allChilds?.forEach((obj) => {
@@ -214,27 +299,17 @@
                 var tangentAngle = Math.atan2(-radiusX * Math.sin(angle), radiusY * Math.cos(angle));
                 obj.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) % 360 + "deg)";
             })
-            console.log("iddd", topIndex - tmpIndex, allChilds);
 
         }
 
 
 
         document.getElementById('left-button').addEventListener('click', () => {
-            let currentImage = images[currentImageIndex];
-
-            currentImage.style.animation = 'slide-out-left 1s ease';
-            currentImage.style.animationFillMode = 'forwards';
-
-            currentImageIndex = (currentImageIndex - 1 + images?.length) % images?.length;
-            console.log("currentImageIndex", currentImageIndex)
-
-            currentImage = images[currentImageIndex];
-
-            currentImage.style.animation = 'slide-out-right 1s ease';
-            currentImage.style.animationFillMode = 'forwards';
+            // to move image after clicking left button....
+            imageTransition(currentImageIndex, currentImageIndex - 1);
 
             var allChilds = document.querySelectorAll('.element');
+
             allChilds?.forEach((obj) => {
                 var currIndex = obj.getAttribute('dataid');
                 console.log("currIndexAff", typeof (Number(currIndex)))
@@ -258,18 +333,8 @@
 
         document.getElementById('right-button').addEventListener('click', () => {
 
-            let currentImage = images[currentImageIndex];
-
-            currentImage.style.animation = 'slide-out-right 1s ease';
-            currentImage.style.animationFillMode = 'forwards';
-
-            currentImageIndex = (currentImageIndex + 1 + images?.length) % images?.length;
-            console.log("currentImageIndex", currentImageIndex)
-
-            currentImage = images[currentImageIndex];
-
-            currentImage.style.animation = 'slide-out-left 1s ease';
-            currentImage.style.animationFillMode = 'forwards';
+            // to move image after clicking right button....
+            imageTransition(currentImageIndex, currentImageIndex + 1);
 
             var allChilds = document.querySelectorAll('.element');
             allChilds?.forEach((obj) => {
@@ -291,6 +356,26 @@
                 obj.style.transform = "rotate(" + (90 - (tangentAngle * 180 / Math.PI)) + "deg)";
             })
         });
+
+        // function to animate image using current and previous image index....
+        const imageTransition = (prevIndex, currIndex) => {
+            let currentImage = images[prevIndex];
+            currentImage.style['z-index'] = 0;
+
+            currentImage.style.animation = 'slide-out-right 1s ease';
+            currentImage.style.animationFillMode = 'forwards';
+
+            currIndex = (currIndex + images?.length) % images?.length;
+
+            currentImage = images[currIndex];
+
+            currentImage.style.animation = 'slide-out-left 1s ease';
+            currentImage.style.animationFillMode = 'forwards';
+            currentImage.style['z-index'] = 1000;
+
+
+            currentImageIndex = currIndex;
+        }
 
 
     </script>
