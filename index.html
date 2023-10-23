@@ -1,194 +1,111 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="index.css">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-<body>
-    <div class="navParent">
-        <div class="container">
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-            <div class="child"></div>
-        </div>
-    </div>
-
-    <!-- <div
-        style="display: flex; justify-content: center;flex-direction: row; align-items: center; margin-top: -20px;z-index: 1000;position: relative;">
-        <button id="left-button">Left</button>
-        <div class="image-container">
-            <img class="image" src="8b9a7378037bd65f4cf0afc4e6d61564--photography-flowers-macro-photography.jpg"
-                alt="Image 1">
-            <img class="image" src="Portrait-5_1024x1024.jpg" alt="Image 2">
-            <img class="image" src="portrait-orientation.jpg" alt="Image 3">
-        </div>
-        <button id="right-button">Right</button>
-    </div> -->
-
-    <script>
-        var circulerNavigaterWidth = 600;
-        let ELIPSE_A = circulerNavigaterWidth/2
-        var CENTER = {h:ELIPSE_A, k: 250}
-        let ELIPSE_B = ELIPSE_A*2/3
-
-
-        const getYCordinate=(x, center, a, b)=>{
-            //  center = {h:"10",k:"50"}
-            console.log("inYy",)
-             return center.k+Math.sqrt(Math.abs(b*b*(1-((x-center.h)*(x-center.h))/a*a)))
-        }
-        const container = document.querySelector('.container')
-
-        // container.style.width = `${circulerNavigaterWidth}px`;
-        container.style.width = `${circulerNavigaterWidth}px`;
-            container.style.height = `${circulerNavigaterWidth/2}px`;
-
-        const getSlopeOfTangentInDegree=(x,y,a,b,center)=>{
-            console.log("a*a*(y-Number(center.k)))",a*a*(y-Number(center.k)))
-            return (-b*b*(x-center.h)/a*a*(y-Number(center.k)))*180/Math.PI;
-        }
+        <style>
+            .gravity-parent {
+                background-color: #FF783F;
+                width: 100%;
+                height: 600px;
+                z-index: 1;
+                display: block !important;
+            }
         
-        window.addEventListener('resize', () => {
+          .gravity-icons {
+                width:100vw;
+                height:100%;
+                position:relative;
+                z-index:20;
+                display: block !important;
+              }
+        
+              .gravity-icons img {
+                position:absolute;
+                z-index:25;
+                display: block !important;
+              }
+          
+                #img-1 {
+                left: 21%;
+              }
+        
+              #img-2 {
+                 top: 20%;
+                 left: 30%;
+              }
+              
+              #img-3 {
+                 bottom: 4%;
+                 left: 39%;
+              }
+              
+              #img-4 {
+                top: 17%;
+                left: 40%;
+              }
+              
+              #img-5 {
+                  top: 17%;
+                 left: 19%;
+              }
+              #img-6 {
+                 top: 42%;
+                 left: 27%;
+              }
+              
+              #img-7 {
+                 left: 24%;
+               bottom: 50%;
+              }
+        
+              #img-8 {
+                left: 35%;
+                top: 6%;
+              }
+        
+              #img-9{
+                left: 53%;
+                top: 16%;
+              }
+        
+              #img-10{
+                left: 58%;
+                top: -3%;
+              }
+        
+              #img-11{
+                left: 53%;
+              }
+        
+              #img-12{
+                left: 53%;
+              }
+        </style>
+    </head>
+    <body>
+        <div class="gravity-parent">
+            <div class="gravity-icons">
+                <img class="box2d" id="img-1" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7645.png?v=1697799156"/>
+                <img class="box2d" id="img-2" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7640.png?v=1697799156"/>
+                <img class="box2d" id="img-3" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/OBJECTS.png?v=1697799157"/>
+                <img class="box2d" id="img-4" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7637.png?v=1697799156"/>
+                <img class="box2d" id="img-5" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7642.png?v=1697799157"/>
+                <img class="box2d" id="img-6" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7638.png?v=1697799157"/>
+                <img class="box2d" id="img-7" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7648.png?v=1697799157"/>
+                <img class="box2d" id="img-8" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7639.png?v=1697799157"/>
+                <img class="box2d" id="img-9" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7647.png?v=1697883810"/>
+                <img class="box2d" id="img-10" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7641.png?v=1697883817"/>
+                <img class="box2d" id="img-11" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7648.png?v=1697799157"/>
+                <img class="box2d" id="img-12" src="https://cdn.shopify.com/s/files/1/0814/6616/3478/files/Frame_7648.png?v=1697799157"/>
+            </div>
+          </div>
+          <!-- <iframe src="http://127.0.0.1:5500/index.html" style="width:100%;height:600px"></iframe> -->
 
-            console.log("circulerNavigaterWidth", circulerNavigaterWidth)
-            const container = document.querySelector('.container')
-            const navParent = document.querySelector('.navParent');
-            const childContainer = document.querySelectorAll('.child');
-            let xPos=0;
-            let yPos=50;
 
-            childContainer?.forEach((obj) => {
-                console.log("xPos",xPos,yPos)
-                obj.style["margin-left"] = `${xPos}px`;
-                obj.style["margin-top"] = `${yPos}px`;
-                // xPos+=30;
-                // yPos-=10;
-            })
-
-            // navParent.style.height = `${circulerNavigaterWidth * 30 / 100}px`;
-            // navParent.style.width = `${circulerNavigaterWidth}px`;
-            // console.log("childContainer", childContainer)
-            // container.style.width = `${circulerNavigaterWidth}px`;
-            // container.style.height = `${circulerNavigaterWidth/2}px`;
-            // console.log("hukluklui")
-            repeatFunction();
-        });
-        console.log("width", circulerNavigaterWidth)
-        const repeatFunction = () => {
-            const childContainer = document.querySelectorAll('.child');
-            let NumberOfChild = childContainer.length;
-            let buttonClicked = 0;
-            let angleToRotate = 360 / NumberOfChild;
-            // console.log("container", container)
-
-            // const images = document.querySelectorAll('.image');
-            let currentIndex = 0;
-            // images[currentIndex].style.opacity = 1;
-
-            let leftClicked = 0;
-            let righjtClicked = 0;
-
-            let angle = 0;
-    
-            let count = 1
-            childContainer?.forEach((item) => {
-                let y = getYCordinate(-277.17, CENTER, ELIPSE_A,ELIPSE_B)
-                let x = -300
-                let angle = getSlopeOfTangentInDegree(5*count,y,ELIPSE_A,ELIPSE_B,CENTER)
-                item.style.transform = `rotate(${getSlopeOfTangentInDegree(30*count,y,ELIPSE_A,ELIPSE_B,CENTER)}deg)`;
-                count += 1;
-                console.log("yyyyy",y)
-                // plot(x,y,angle)giut
-            })
-
-            // document.getElementById('left-button').addEventListener('click', () => {
-            //     // images[currentIndex].style.opacity = 0;
-            //     // images[currentIndex].style.removeProperty('animation')
-
-            //     // currentIndex = (currentIndex - 1 + images.length) % images.length;
-
-            //     // images[currentIndex].style.opacity = 1;
-
-            //     //images[currentIndex].style.animation = `myOrbit 2s linear`;
-
-            //     if (buttonClicked > -NumberOfChild) {
-            //         buttonClicked--;
-            //         childContainer?.forEach((item) => {
-            //             let str = item.style.transform;
-            //             const regex = /(\d+)/;
-            //             let degree;
-            //             const match = str.match(regex);
-            //             if (match) {
-            //                 degree = parseInt(match[0], 10); // Convert the matched string to an integer
-            //                 console.log("degree", degree); // This will output 510
-            //             }
-
-            //             item.style.transform = `rotate(${degree - angleToRotate}deg)`;
-            //             angle -= angleToRotate;
-            //         })
-            //     }
-
-            // });
-
-            // document.getElementById('right-button').addEventListener('click', () => {
-                // images[currentIndex].style.opacity = 0;
-                // images[currentIndex].style.removeProperty('animation')
-                // images[currentIndex].style.transform = 'translateX(100%)';
-
-                // currentIndex = (currentIndex + 1 + images.length) % images.length;
-
-                // images[currentIndex].style.opacity = 1;
-                // images[currentIndex].style.animation = `myOrbit 2s linear`;
-            //     if (buttonClicked < NumberOfChild) {
-            //         buttonClicked++;
-            //         childContainer?.forEach((item) => {
-            //             let str = item.style.transform;
-            //             const regex = /(\d+)/;
-            //             let degree;
-            //             const match = str.match(regex);
-            //             if (match) {
-            //                 degree = parseInt(match[0], 10); // Convert the matched string to an integer
-            //                 console.log("degree", degree); // This will output 510
-            //             }
-            //             item.style.transform = `rotate(${degree + angleToRotate}deg)`;
-            //             angle += angleToRotate;
-            //         })
-            //     }
-            // });
-
-        }
-        repeatFunction();
-    </script>
-</body>
-
+        <script type="text/javascript" src="box-2d.js"></script>
+        <script type="text/javascript" src="gravity.js"></script>
+    </body>
 </html>
