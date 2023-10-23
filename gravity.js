@@ -392,12 +392,12 @@ function loop() {
     var body = bodies[i];
     var element = elements[i];
     element.style.left = body.m_position0.x - (properties[i][2] >> 1) + "px";
-    if(Number(body.m_position0.y - (properties[i][3] >> 1))<680){
+    if(Number(body.m_position0.y - (properties[i][3] >> 1))<600){
       element.style.top = body.m_position0.y - (properties[i][3] >> 1) + "px";
     }
-    else{
-      element.style.top = 550+i*5 + "px";
-    }
+    // else{
+    //   element.style.top = 550+i*5 + "px";
+    // }
 
     var style = "rotate(" + body.m_rotation0 * 57.2957795 + "deg)";
 
