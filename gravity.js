@@ -95,9 +95,8 @@ function init() {
   // Get box2d elements
 
   elements = getElementsByClass("box2d");
-console.log("elements",elements)
+
   for (var i = 0; i < elements.length; i++) {
-    console.log("getElementProperties(elements[i])",getElementProperties(elements[i]))
     properties[i] = getElementProperties(elements[i]);
   }
   
@@ -133,6 +132,8 @@ console.log("elements",elements)
 function run() {
   isRunning = true;
   requestAnimationFrame(loop);
+  // loop();
+  // setInterval(loop,50);
 }
 
 //
@@ -364,7 +365,7 @@ var prevTime;
 
 function loop() {
   requestAnimationFrame(loop);
-
+  // loop();
   if (prevTime === undefined) {
     prevTime = Date.now();
   }
@@ -390,9 +391,13 @@ function loop() {
   for (i = 0; i < elements.length; i++) {
     var body = bodies[i];
     var element = elements[i];
-
     element.style.left = body.m_position0.x - (properties[i][2] >> 1) + "px";
-    element.style.top = body.m_position0.y - (properties[i][3] >> 1) + "px";
+    if(Number(body.m_position0.y - (properties[i][3] >> 1))<680){
+      element.style.top = body.m_position0.y - (properties[i][3] >> 1) + "px";
+    }
+    else{
+      element.style.top = 550+i*5 + "px";
+    }
 
     var style = "rotate(" + body.m_rotation0 * 57.2957795 + "deg)";
 
@@ -538,7 +543,7 @@ function getElementsByClass(searchClass) {
     for (k = 0; k < classes.length; k++)
       if (classes[k] == searchClass) classElements[j++] = els[i];
   }
-console.log("classElements",classElements)
+
   return classElements;
 }
 
